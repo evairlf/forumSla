@@ -2,7 +2,7 @@
 function App() {
   return (
     <div>
-     Oizaum forunzera
+     <h1>OIZAUM FORUM SEILA CARAIO</h1>
     </div>
   );
 }
