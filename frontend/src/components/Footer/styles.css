@@ -1,0 +1,9 @@
+.footer p{
+    font-size: 80%;
+}
+
+.footer a:hover{
+    color: aliceblue;
+    font-size: 200%;
+    font-weight: bold;
+}

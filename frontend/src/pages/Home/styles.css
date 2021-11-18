@@ -1,0 +1,16 @@
+.sidebar-teimoso {
+    float: left;
+    border-style: solid;
+    border-width: 0 4px 0 0 ;
+    height: 230%;
+    position: relative;
+}
+
+.questions-div{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.divzona{
+    width: 2000px;
+}

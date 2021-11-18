@@ -1,14 +1,16 @@
-import Navbar from "components/Navbar";
-import Sidebar from "components/sidebar"
+import Home from "pages/Home";
+import Login from "pages/Login";
+import Questions from "pages/Questions";
+import SignUp from "pages/SignUp";
+
+
+
+
 
 function App() {
   return (
     <>
-    <Navbar/>
-    <div className="d-flex">
-    <Sidebar/>
-     <h1 className="text-primary">OIZAUM FORUM SEILA CARAIO</h1>
-    </div>
+     <Home/>
     </>
   );
 }
