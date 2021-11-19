@@ -11,6 +11,8 @@ function Sidebar() {
           <div  className="d-flex px-5 justify-content-center flex-column">
           <h4>Usuário Logado</h4>
           <p>Usuário Deslogado</p>
+
+          <button type="submit" className="btn #color ">Faça aqui a sua pergunta!</button>
           </div>
           
           
