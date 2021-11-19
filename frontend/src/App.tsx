@@ -1,16 +1,9 @@
-import Home from "pages/Home";
-import Login from "pages/Login";
-import Questions from "pages/Questions";
-import SignUp from "pages/SignUp";
-
-
-
-
+import Routes from "Routes";
 
 function App() {
   return (
     <>
-     <Home/>
+     <Routes/>
     </>
   );
 }

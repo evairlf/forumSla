@@ -1,5 +1,4 @@
 import Footer from "components/Footer";
-import Navbar from "components/Navbar";
 import Sidebar from "components/sidebar"
 
 import './styles.css'
@@ -10,7 +9,7 @@ const Home = () => {
 
 
       <div className="d-flex">
-        <div className="sidebar-teimoso">
+        <div className="sidebar-fica-certo">
           <Sidebar />
         </div>
         <div className="divzona">
