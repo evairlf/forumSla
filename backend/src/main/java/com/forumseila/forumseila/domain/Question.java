@@ -17,14 +17,14 @@ public class Question {
 
     private UUID externalId;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question" ,fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
     private List<Response> responses;
 
     @NotBlank
     private String question;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
     private Owner owner;
 
     public Question(@NotBlank String question,
