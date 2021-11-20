@@ -20,9 +20,11 @@ const Login = () => {
 
                
                 <div className="d-flex justify-content-center">
-                    <button type="submit" className="btn btn-block ">Cadastrar!</button>
+                    <button type="submit" className="btn btn-block ">Entrar!</button>
                 </div>
-    
+                <p className="forgot-password text-right d-flex justify-content-start py-4 mx-2">
+                    Não tem conta? <a className="mx-2" href="/signin"> Cadastrar Conta</a>
+                </p>
             </form>
        </div>
     );

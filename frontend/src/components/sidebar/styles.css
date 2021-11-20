@@ -2,19 +2,14 @@
     width: 300px;
 }
 
-.sidebar-container{
-    width: 15%;
-   
-    align-content: center;
-    
-}
-.btn{
+
+.img-property .btn{
     background-color: #195B60;
     color: aliceblue;
-    margin-top: 7px;
     width: 100%;
     margin: 0 auto;
 }
+
 .btn:hover{
     background-color: #29acb6;
     color: rgb(250, 250, 250);

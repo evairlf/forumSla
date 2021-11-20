@@ -1,3 +1,4 @@
+import NotFound from "components/NotFound";
 import Answers from "pages/answers";
 import Home from "pages/Home";
 import Login from "pages/Login";
@@ -24,6 +25,9 @@ const Routes = () => {
                 </Route>
                 <Route path="/questions" exact>
                     <Questions/>
+                </Route>
+                <Route path="">
+                    <NotFound/>
                 </Route>
             </Switch>
         </BrowserRouter>

@@ -31,7 +31,7 @@ const SignUp = () => {
                     <button type="submit" className="btn btn-block ">Cadastrar!</button>
                 </div>
                 <p className="forgot-password text-right d-flex justify-content-start py-4 mx-2">
-                    Já é Registrado? <a className="mx-2" href="#"> Efetuar Login</a>
+                    Já é Registrado? <a className="mx-2" href="/login"> Efetuar Login</a>
                 </p>
             </form>
        </div>

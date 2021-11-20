@@ -2,7 +2,7 @@
     float: left;
     border-style: solid;
     border-width: 0 4px 0 0 ;
-    height: 230%;
+    height: 200%;
     position: relative;
 }
 
@@ -13,4 +13,13 @@
 
 .divzona{
     width: 2000px;
+}
+
+.perguntas{
+    margin: 0 auto;
+    
+}
+
+.xingorinfola{
+    margin-top: 20px;
 }

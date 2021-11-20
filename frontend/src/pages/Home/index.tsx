@@ -1,50 +1,38 @@
+import Ask from "components/Asks";
 import Footer from "components/Footer";
 import Sidebar from "components/sidebar"
+import { Questions } from "types/questions";
+import { UserQuestions } from "types/user";
 
 import './styles.css'
 
 const Home = () => {
+
+  const User = [{
+    id: "1",
+    nome: "Maria Rita",
+    questions: [
+      {question: "Pensar em poneys na hora do jantar significa que sou poneyfóbico?"},
+      {question: "bathureinifeinn bathureinifeinn ein ein"},
+      {question: "se meu amigo ouve funk e canta ele eu devo botar fogo nele? (no amigo nao no funk)"},
+      {question: "Hoje acordei com o olho vermelho, parece que eu fumo maconha por um olho e pelo outro cheiro cocaína, devo me preocupar?"}]
+  },{
+    id: "2",
+    nome: "marionelson",
+    questions: [
+      {question: "Ser ou nao ser eis o cascao?"},
+      {question: "k'mon barby letis go bary?"},
+      {question: "a filo diz que tem 3 sapatos de rapé?"},
+      {question: "Fuscas podem voar?"}]
+  }];
+  
   return (
     <>
-
-
-      <div className="d-flex">
+      <div className="d-flex column ">
         <div className="sidebar-fica-certo">
           <Sidebar />
         </div>
-
-
-        <div className="row mb-1">
-          <div className="col-md-25">
-            <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-              <div className="col p-4 d-flex flex-column position-static">
-                <h3 className="mb-0">EU</h3>
-                <p className="mb-1 text-muted">hoje queria comer uns cu porra  </p>
-                <a href="#" className="stretched-link">Responda!</a>
-              </div>
-            </div>
-            <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-              <div className="col p-4 d-flex flex-column position-static">
-                <h3 className="mb-0">EU</h3>
-                <p className="mb-1 text-muted">quero arrumar essa bosta pq aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa </p>
-                <a href="#" className="stretched-link">Responda!</a>
-              </div>
-            </div>
-            <div className="col-auto d-none d-lg-block">
-            </div>
-          </div>
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className="page-item"><a className="page-link" href="#">Anterior</a></li>
-              <li className="page-item"><a className="page-link" href="#">1</a></li>
-              <li className="page-item"><a className="page-link" href="#">2</a></li>
-              <li className="page-item"><a className="page-link" href="#">3</a></li>
-              <li className="page-item"><a className="page-link" href="#">Proxima</a></li>
-            </ul>
-          </nav>
-        </div >
-
-
+        <Ask user={User} />
       </div >
       <Footer />
     </>
