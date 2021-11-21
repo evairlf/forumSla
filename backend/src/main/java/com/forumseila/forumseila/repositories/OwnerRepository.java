@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
 
     Optional<Owner> findByExternalId (UUID externalId);
+
+    Optional<Owner> findByEmail(String email);
 }

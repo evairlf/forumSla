@@ -2,6 +2,7 @@ package com.forumseila.forumseila.service;
 
 import com.forumseila.forumseila.domain.Owner;
 import com.forumseila.forumseila.domain.dto.OwnerDto;
+import com.forumseila.forumseila.domain.dto.OwnerDtoLogin;
 import com.forumseila.forumseila.repositories.OwnerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,5 +47,15 @@ public class OwnerService {
                 Optional.ofNullable(ownerRepository.findByExternalId(UUID.fromString(externalId))
                         .orElseThrow(() -> new IllegalStateException("Owner not found")));
         return owner;
+    }
+
+
+    public Optional<Owner> isValid(OwnerDtoLogin ownerDtoLogin) {
+        Optional<Owner> owner = ownerRepository.findByEmail(ownerDtoLogin.getEmail());
+        if (owner.get().getEmail().equals(ownerDtoLogin.getEmail()) &&
+                owner.get().getPassword().equals(ownerDtoLogin.getPassword())) {
+            return owner;
+        }
+        return Optional.empty();
     }
 }
