@@ -5,7 +5,6 @@ import com.forumseila.forumseila.domain.dto.QuestionDto;
 import com.forumseila.forumseila.domain.dto.QuestionDtoReponse;
 import com.forumseila.forumseila.service.QuestionService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

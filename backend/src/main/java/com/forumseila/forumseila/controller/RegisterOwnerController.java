@@ -5,7 +5,6 @@ import com.forumseila.forumseila.domain.Owner;
 import com.forumseila.forumseila.domain.dto.OwnerDto;
 import com.forumseila.forumseila.service.EmailService;
 import com.forumseila.forumseila.service.OwnerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
