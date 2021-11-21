@@ -40,7 +40,8 @@ public class RegisterOwnerController {
         log.info("Email send with success and owner saved in DB {} ", ownerDto.getEmail());
         return ResponseEntity.ok().build();
     }
-
+    
+    @CrossOrigin(origins = {"*"})
     @PostMapping("/login")
     public ResponseEntity<OwnerResponse> verifyLogin(@Valid @RequestBody OwnerDtoLogin ownerDtoLogin) {
         Optional<OwnerResponse> response = ownerService.isValid(ownerDtoLogin)
