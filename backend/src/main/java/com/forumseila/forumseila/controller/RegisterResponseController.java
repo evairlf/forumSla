@@ -17,6 +17,7 @@ public class RegisterResponseController {
         this.responseService = responseService;
     }
 
+    @CrossOrigin(origins = {"*"})
     @GetMapping("/{externalId}")
     public ResponseEntity<Page<ResponsePageable>> findAllResponse(@PathVariable String externalId,
                                                                   @RequestParam(required = false,value = "page", defaultValue = "0")           Integer page,

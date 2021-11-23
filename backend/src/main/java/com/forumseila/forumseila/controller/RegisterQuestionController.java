@@ -21,6 +21,7 @@ public class RegisterQuestionController {
         this.questionService = questionService;
     }
 
+    @CrossOrigin(origins = {"*"})
     @PostMapping("/register")
     public ResponseEntity<?> registerQuestion(@Valid @RequestBody QuestionDto questionDto) {
         Optional<Question> question =
@@ -29,6 +30,7 @@ public class RegisterQuestionController {
         return ResponseEntity.ok().build();
     }
 
+    @CrossOrigin(origins = {"*"})
     @GetMapping
     public ResponseEntity<Page<QuestionDtoReponse>> findAllQuestions(
             @RequestParam(required = false,value = "page", defaultValue = "0")           Integer page,
