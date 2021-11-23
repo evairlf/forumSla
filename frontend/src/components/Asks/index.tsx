@@ -1,7 +1,8 @@
-import { UserQuestions } from "types/user";
+import { questions } from "types/questions";
+
 
 type Props = {
-  user : UserQuestions[];
+  user : questions[];
 }
 
 const Ask = ({ user } : Props) => {
@@ -21,8 +22,8 @@ const Ask = ({ user } : Props) => {
                     {user?.map( x => (
                         <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div className="col p-4 d-flex flex-column position-static">
-                          <h3 className="mb-0">{x.nome}</h3>
-                          <p className="mb-1 text-muted">{x.questions?.map( y => (<h6>{y.question}</h6>))}</p>
+                          <h3 className="mb-0">{x.nameOwner}</h3>
+                          <p className="mb-1 text-muted">{ <h6>{x.question}</h6>}</p>
                           <a href="" className="stretched-link">Responda!</a>
                         </div>
                       </div>

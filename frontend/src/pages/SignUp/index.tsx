@@ -1,4 +1,4 @@
-import logoImage from 'assets/images/Sei_la_Logotipo.png'
+import logoImage from 'assets/images/Logotipo.png'
 import './styles.css'
 
 const SignUp = () => {
