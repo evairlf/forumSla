@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import logo from 'assets/images/Sei_la_Logotipo.png';
+import logo from 'assets/images/Logotipo.png';
 import { User } from "types/user";
 import './styles.css';
 

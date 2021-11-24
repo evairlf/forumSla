@@ -4,6 +4,7 @@ import com.forumseila.forumseila.domain.Response;
 import com.forumseila.forumseila.domain.dto.ResponseDto;
 import com.forumseila.forumseila.service.ResponseService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class RegisterResponseToTheQuestion {
         this.responseService = responseService;
     }
 
+    @CrossOrigin(origins = {"*"})
     @PostMapping("/response")
     public ResponseEntity<?> registerResponse(@Valid @RequestBody ResponseDto responseDto) {
         if (responseDto == null) {

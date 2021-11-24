@@ -1,5 +1,5 @@
-export type Questions = {
-    nome: string;
-    question : string;
-    externalIdQuestion: string;
+export type questions = {
+   question: string;
+   nameOwner: string;
+   externalIdQuestion: string;
 }

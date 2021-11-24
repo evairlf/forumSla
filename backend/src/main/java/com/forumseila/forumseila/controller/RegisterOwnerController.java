@@ -29,6 +29,7 @@ public class RegisterOwnerController {
         this.emailService = emailService;
     }
 
+    @CrossOrigin(origins = {"*"})
     @PostMapping("/register")
     public ResponseEntity<?> registerQuestion(@Valid @RequestBody OwnerDto ownerDto) {
         Optional<Owner> owner = ownerService.toOwner(ownerDto);
