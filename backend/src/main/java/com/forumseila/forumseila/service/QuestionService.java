@@ -60,8 +60,7 @@ public class QuestionService {
 
     }
 
-    public Page<QuestionDtoReponse> findAllQuestions (Integer page,Integer linesPerPage){
-        Pageable pageable = PageRequest.of(page,linesPerPage);
+    public Page<QuestionDtoReponse> findAllQuestions (Pageable pageable){
        return questionRepository.findAll(pageable).map(QuestionDtoReponse::new);
     }
 

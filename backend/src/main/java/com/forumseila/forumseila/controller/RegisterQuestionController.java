@@ -5,6 +5,7 @@ import com.forumseila.forumseila.domain.dto.QuestionDto;
 import com.forumseila.forumseila.domain.dto.QuestionDtoReponse;
 import com.forumseila.forumseila.service.QuestionService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,11 +31,8 @@ public class RegisterQuestionController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<QuestionDtoReponse>> findAllQuestions(
-            @RequestParam(required = false,value = "page", defaultValue = "0")           Integer page,
-            @RequestParam(required = false,value = "linesPerPage", defaultValue = "5")   Integer linesPerPage){
-
-        Page<QuestionDtoReponse> questionDtoReponses = questionService.findAllQuestions(page, linesPerPage);
+    public ResponseEntity<Page<QuestionDtoReponse>> findAllQuestions(Pageable pageable){
+        Page<QuestionDtoReponse> questionDtoReponses = questionService.findAllQuestions(pageable);
         if (questionDtoReponses.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
