@@ -6,7 +6,7 @@ const api = axios.create({
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
     },
-    baseURL: "https://forumseila.herokuapp.com"
+    baseURL: "http://localhost:8080"
 });
 
 export default api;

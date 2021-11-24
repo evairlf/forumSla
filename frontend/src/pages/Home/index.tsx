@@ -1,27 +1,17 @@
 import Ask from "components/Asks";
 import Footer from "components/Footer";
 import Sidebar from "components/sidebar"
-import { useEffect, useState } from "react";
-import api from "services/api";
-import { questions } from "types/questions";
+
+
 
 import './styles.css'
 
 
-type user = [{
-  question: string;
-   nameOwner: string;
-   externalIdQuestion: string;
-}];
 
 
 const Home = () => {
 
-  const [questions, setUserResponse] = useState<user>([{
-    question: '',
-    nameOwner: '',
-    externalIdQuestion: ''
-  }]);
+ 
 
 
   //const User = [{
@@ -43,14 +33,7 @@ const Home = () => {
   //}];
 
 
-  useEffect(() => {
-    api
-      .get("/api/v1/question")
-      .then((response) => setUserResponse(response.data))
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-  }, []);
+ 
 
   return (
     <>
@@ -58,7 +41,7 @@ const Home = () => {
         <div className="sidebar-fica-certo">
           <Sidebar />
         </div>
-        <Ask user={questions} />
+        <Ask/>
       </div >
       <Footer />
     </>

@@ -27,7 +27,7 @@ const Login = () => {
 
     const onSubmit = (formLogin: FormLogin) => {
         api
-            .post('https://forumseila.herokuapp.com/api/v1/owner/login', {
+            .post('/api/v1/owner/login', {
                 email: formLogin.email,
                 password: formLogin.password
             })

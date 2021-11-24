@@ -15,3 +15,7 @@ export type isLogged = {
     name: string;
 }
 
+export type makeQuestion = {
+    question: string,
+    externalIdOwner: string
+}
