@@ -42,14 +42,14 @@ public class ResponseService {
         response.setNameOwner(responseDto.getNameOwner());
 
         question.get().addResponse(response);
-        questionRepository.save(question.get());
-
         responseRepository.save(response);
+
+        questionRepository.save(question.get());
 
         return Optional.ofNullable(response);
     }
 
-    public Page<ResponsePageable> findAllResponse(Integer page, Integer linesPerPage, String externalId) {
+    public Page<ResponsePageable> findAllResponse(String externalId) {
         Optional<Question> question = questionRepository.findByExternalId(UUID.fromString(externalId));
         if (question.isEmpty()) {
             return Page.empty();

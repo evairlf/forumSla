@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -60,8 +61,9 @@ public class QuestionService {
 
     }
 
-    public Page<QuestionDtoReponse> findAllQuestions (Pageable pageable){
-       return questionRepository.findAll(pageable).map(QuestionDtoReponse::new);
+    public Page<QuestionDtoReponse> findAllQuestions (Integer page, Integer size, String direction, String orderby ){
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.valueOf(direction), orderby);
+       return questionRepository.findAll(pageRequest).map(QuestionDtoReponse::new);
     }
 
 }

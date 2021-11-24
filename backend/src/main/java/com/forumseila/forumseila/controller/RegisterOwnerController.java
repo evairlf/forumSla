@@ -29,7 +29,6 @@ public class RegisterOwnerController {
         this.emailService = emailService;
     }
 
-    @CrossOrigin(origins = {"*"})
     @PostMapping("/register")
     public ResponseEntity<?> registerQuestion(@Valid @RequestBody OwnerDto ownerDto) {
         Optional<Owner> owner = ownerService.toOwner(ownerDto);
@@ -42,7 +41,6 @@ public class RegisterOwnerController {
         return ResponseEntity.ok().build();
     }
     
-    @CrossOrigin(origins = {"*"})
     @PostMapping("/login")
     public ResponseEntity<OwnerResponse> verifyLogin(@Valid @RequestBody OwnerDtoLogin ownerDtoLogin) {
         Optional<OwnerResponse> response = ownerService.isValid(ownerDtoLogin)

@@ -22,7 +22,6 @@ public class RegisterQuestionController {
         this.questionService = questionService;
     }
 
-    @CrossOrigin(origins = {"*"})
     @PostMapping("/register")
     public ResponseEntity<?> registerQuestion(@Valid @RequestBody QuestionDto questionDto) {
         Optional<Question> question =
@@ -31,10 +30,12 @@ public class RegisterQuestionController {
         return ResponseEntity.ok().build();
     }
 
-    @CrossOrigin(origins = {"*"})
     @GetMapping
-    public ResponseEntity<Page<QuestionDtoReponse>> findAllQuestions(Pageable pageable){
-        Page<QuestionDtoReponse> questionDtoReponses = questionService.findAllQuestions(pageable);
+    public ResponseEntity<Page<QuestionDtoReponse>> findAllQuestions(  @RequestParam(value = "page", defaultValue = "0") 			    Integer page,
+                                                                       @RequestParam(value = "size", defaultValue = "5") 	            Integer size,
+                                                                       @RequestParam(value = "orderBy", defaultValue = "id")		    String orderBy ,
+                                                                       @RequestParam(value = "direction", defaultValue = "ASC")	        String direction){
+        Page<QuestionDtoReponse> questionDtoReponses = questionService.findAllQuestions(page, size, direction, orderBy);
         if (questionDtoReponses.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

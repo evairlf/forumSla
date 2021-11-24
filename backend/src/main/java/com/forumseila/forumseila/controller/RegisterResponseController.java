@@ -1,10 +1,15 @@
 package com.forumseila.forumseila.controller;
 
+import com.forumseila.forumseila.domain.Response;
+import com.forumseila.forumseila.domain.dto.ResponseDto;
 import com.forumseila.forumseila.domain.dto.ResponsePageable;
 import com.forumseila.forumseila.service.ResponseService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Optional;
 
 
 @RestController
@@ -17,17 +22,25 @@ public class RegisterResponseController {
         this.responseService = responseService;
     }
 
-    @CrossOrigin(origins = {"*"})
     @GetMapping("/{externalId}")
-    public ResponseEntity<Page<ResponsePageable>> findAllResponse(@PathVariable String externalId,
-                                                                  @RequestParam(required = false,value = "page", defaultValue = "0")           Integer page,
-                                                                  @RequestParam(required = false,value = "linesPerPage", defaultValue = "5")   Integer linesPerPage) {
+    public ResponseEntity<Page<ResponsePageable>> findAllResponse(@PathVariable String externalId) {
         Page<ResponsePageable> responsePageables =
-                responseService.findAllResponse(page, linesPerPage, externalId);
+                responseService.findAllResponse(externalId);
         if (responsePageables.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(responsePageables);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerResponse(@Valid @RequestBody ResponseDto responseDto) {
+        if (responseDto == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        Optional<Response> response =
+                Optional.ofNullable(responseService.toResponse(responseDto)
+                        .orElseThrow(() -> new IllegalStateException("Response not found")));
+        return ResponseEntity.ok().build();
     }
 
 }
