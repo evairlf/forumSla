@@ -21,7 +21,8 @@ public class RegisterQuestionController {
     public RegisterQuestionController(QuestionService questionService) {
         this.questionService = questionService;
     }
-
+    
+    @CrossOrigin(origins = "*")
     @PostMapping("/register")
     public ResponseEntity<?> registerQuestion(@Valid @RequestBody QuestionDto questionDto) {
         Optional<Question> question =

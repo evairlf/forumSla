@@ -6,7 +6,8 @@ import api from "services/api";
 import { makeQuestion } from "types/user";
 import './styles.css';
 
-const external_id_mocked = '3ac2902c-49b3-4b9d-adb6-1a2872a420a8';
+const external_id_mocked = 'aa8d7baa-3c03-43f6-8d4b-b0869250fa8f';
+
 
 type mkQuest = {
     question: string,
@@ -22,14 +23,26 @@ const Questions = () => {
 
 
     const onSubmit = (mkquest: mkQuest) => {
-        console.log(mkquest.question)
+        console.log(mkquest.question);
+        console.log(external_id_mocked);
+
         api
-            .post('/question/register', {
-                question: 'mkquest.question',
-                externalIdOwner: external_id_mocked
-            })
+            .post('/api/v1/question/register',  
+            {
+                externalIdOwner: external_id_mocked,
+                question: "Antes eu odiava front end quando fiz esse trabalho eu odeio mais ainda tenho trauma?"
+                
+                
+            },
+            {
+                headers: {
+                  
+                }
+              }
+            )
             .then((response) => {
-                console.log(mkquest.question)
+                console.log(mkquest.question);
+                console.log(external_id_mocked);
                 
             })
             .catch((err) => {

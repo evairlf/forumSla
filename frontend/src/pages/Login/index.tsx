@@ -22,7 +22,8 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormLogin>();
 
     const [user, setUser] = useState({
-        nameOwner: ''
+        name: '',
+        externalId: ''
     });
 
     const onSubmit = (formLogin: FormLogin) => {
@@ -34,7 +35,8 @@ const Login = () => {
             .then((response) => {
                 saveAuthData(response.data);
                 const valor = getAuthData();
-                console.log('VALOR DO LOCAL STORAGE: ' + valor);
+                console.log('VALOR DO LOCAL STORAGE: ' + valor.name + '  --  ' + valor.externalId);
+                setUser(getAuthData());
                 setUser(response.data);
                 sethasError(false);
             })
@@ -45,7 +47,8 @@ const Login = () => {
     };
 
     const imprime = () => {
-        console.log(user.nameOwner);
+        console.log(user.name);
+        console.log(user.externalId);
     }
 
 
@@ -65,10 +68,10 @@ const Login = () => {
                     <input type="text"
                         className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                         placeholder="Digite seu Email aqui...."
-                        {...register('email' , {
+                        {...register('email', {
                             required: 'Campo Obrigatório',
                             pattern: {
-                                value : /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi,
+                                value: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi,
                                 message: 'Email Inválido'
                             }
                         })}

@@ -44,7 +44,7 @@ public class RegisterOwnerController {
     @PostMapping("/login")
     public ResponseEntity<OwnerResponse> verifyLogin(@Valid @RequestBody OwnerDtoLogin ownerDtoLogin) {
         Optional<OwnerResponse> response = ownerService.isValid(ownerDtoLogin)
-                .map(s -> new OwnerResponse(s.getName()));
+                .map(s -> new OwnerResponse(s.getName(),s.getExternalId()));
         if(response.isEmpty()){
             log.error("Onwer not found {} ", ownerDtoLogin.getEmail());
             return  ResponseEntity.notFound().build();
