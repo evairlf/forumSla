@@ -17,6 +17,7 @@ public class QuestionDtoReponse {
     public QuestionDtoReponse(){
 
     }
+
     public QuestionDtoReponse (Question question) {
      this.question = question.getQuestion();
      this.nameOwner = question.getOwner().getName();

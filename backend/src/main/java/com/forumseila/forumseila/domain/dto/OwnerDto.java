@@ -1,5 +1,8 @@
 package com.forumseila.forumseila.domain.dto;
 
+import com.forumseila.forumseila.domain.Owner;
+import com.forumseila.forumseila.validator.genericvalidation.UniqueValue;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -9,6 +12,7 @@ public class OwnerDto {
     private String name;
     @NotBlank
     @Email
+    @UniqueValue(domainClass = Owner.class, fieldName = "email")
     private String email;
     @NotBlank
     private String password;
