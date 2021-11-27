@@ -12,7 +12,5 @@ import java.util.UUID;
 @Repository
 public interface ResponseRepository extends JpaRepository<Response, Long> {
 
-
-
     Page<Response> findResponseByQuestionExternalId(UUID externalId, Pageable pageable);
 }

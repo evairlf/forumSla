@@ -5,6 +5,8 @@ import com.forumseila.forumseila.domain.dto.QuestionDto;
 import com.forumseila.forumseila.domain.dto.QuestionDtoReponse;
 import com.forumseila.forumseila.domain.dto.QuestionDtoResponsePageable;
 import com.forumseila.forumseila.service.QuestionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1/question")
 public class RegisterQuestionController {
+    private Logger log = LoggerFactory.getLogger(RegisterOwnerController.class);
 
     private QuestionService questionService;
 
@@ -28,6 +31,7 @@ public class RegisterQuestionController {
         Optional<Question> question =
                 Optional.ofNullable(questionService.toQuestion(questionDto)
                         .orElseThrow(() -> new IllegalArgumentException("Unable to save the Question")));
+        log.info("Register question in BD {}", question.get().getExternalId());
         return ResponseEntity.ok().build();
     }
 
