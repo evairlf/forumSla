@@ -1,6 +1,5 @@
 package com.forumseila.forumseila.domain.dto;
 
-import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 

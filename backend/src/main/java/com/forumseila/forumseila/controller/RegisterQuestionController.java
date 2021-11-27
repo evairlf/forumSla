@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1/question")
 public class RegisterQuestionController {
-    private Logger log = LoggerFactory.getLogger(RegisterOwnerController.class);
+    private Logger log = LoggerFactory.getLogger(RegisterQuestionController.class);
 
     private QuestionService questionService;
 

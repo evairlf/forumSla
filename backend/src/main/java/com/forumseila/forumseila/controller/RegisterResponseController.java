@@ -4,6 +4,8 @@ import com.forumseila.forumseila.domain.Response;
 import com.forumseila.forumseila.domain.dto.ResponseDto;
 import com.forumseila.forumseila.domain.dto.ResponsePageable;
 import com.forumseila.forumseila.service.ResponseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/response")
 public class RegisterResponseController {
+    private Logger log = LoggerFactory.getLogger(RegisterQuestionController.class);
 
     private ResponseService responseService;
 
@@ -41,6 +44,7 @@ public class RegisterResponseController {
         Optional<Response> response =
                 Optional.ofNullable(responseService.toResponse(responseDto)
                         .orElseThrow(() -> new IllegalStateException("Response not found")));
+        log.info("Registe response in DB {}, {}", response.get().getNameOwner(), response.get().getExternalId());
         return ResponseEntity.ok().build();
     }
 

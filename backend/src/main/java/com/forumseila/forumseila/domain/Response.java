@@ -49,4 +49,8 @@ public class Response {
     public void setNameOwner(String nameOwner) {
         this.nameOwner = nameOwner;
     }
+
+    public UUID getExternalId() {
+        return externalId;
+    }
 }
