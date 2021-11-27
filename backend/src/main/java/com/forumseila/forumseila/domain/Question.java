@@ -1,10 +1,9 @@
 package com.forumseila.forumseila.domain;
 
-import org.springframework.context.annotation.Lazy;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +20,7 @@ public class Question {
     private List<Response> responses;
 
     @NotBlank
+    @Size(min = 10, max = 500)
     private String question;
 
     @NotNull

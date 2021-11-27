@@ -4,6 +4,7 @@ import com.forumseila.forumseila.domain.Owner;
 import com.forumseila.forumseila.domain.Question;
 import com.forumseila.forumseila.domain.dto.QuestionDto;
 import com.forumseila.forumseila.domain.dto.QuestionDtoReponse;
+import com.forumseila.forumseila.domain.dto.QuestionDtoResponsePageable;
 import com.forumseila.forumseila.repositories.OwnerRepository;
 import com.forumseila.forumseila.repositories.QuestionRepository;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class QuestionService {
@@ -61,9 +63,20 @@ public class QuestionService {
 
     }
 
-    public Page<QuestionDtoReponse> findAllQuestions (Integer page, Integer size, String direction, String orderby ){
+    public Page<QuestionDtoReponse> findAllQuestions(Integer page, Integer size, String direction, String orderby) {
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.valueOf(direction), orderby);
-       return questionRepository.findAll(pageRequest).map(QuestionDtoReponse::new);
+        return questionRepository.findAll(pageRequest).map(QuestionDtoReponse::new);
     }
 
+    public Optional<QuestionDtoResponsePageable> findQuestionByExternalId(String externalId) {
+        Optional<Question> possibleQuestion = (questionRepository.findByExternalId(UUID.fromString(externalId)));
+        if(possibleQuestion.isEmpty()){
+            return Optional.empty();
+        }
+        return possibleQuestion.map(
+                question ->  new QuestionDtoResponsePageable(
+                        possibleQuestion.get().getQuestion(), possibleQuestion.get().getOwner().getName()));
+    }
 }
+
+

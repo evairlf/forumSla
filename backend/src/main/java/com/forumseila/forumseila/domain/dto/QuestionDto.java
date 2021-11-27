@@ -1,12 +1,12 @@
 package com.forumseila.forumseila.domain.dto;
 
-import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class QuestionDto {
 
-    @Lob
     @NotBlank
+    @Size(min = 10, max = 500)
     private String question;
 
     @NotBlank
@@ -19,9 +19,11 @@ public class QuestionDto {
         this.externalIdOwner = externalIdOwner;
     }
 
+
     @Deprecated
     public QuestionDto() {
     }
+
 
     public String getExternalIdOwner() {
         return externalIdOwner;

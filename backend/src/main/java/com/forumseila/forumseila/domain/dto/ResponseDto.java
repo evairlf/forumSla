@@ -2,14 +2,15 @@ package com.forumseila.forumseila.domain.dto;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class ResponseDto {
 
     @NotBlank
     private String externalIdQuestion;
 
-    @Lob
     @NotBlank
+    @Size(min = 10, max = 500)
     private String response;
 
     @NotBlank

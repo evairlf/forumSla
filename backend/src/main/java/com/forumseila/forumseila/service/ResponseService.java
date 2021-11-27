@@ -6,17 +6,12 @@ import com.forumseila.forumseila.domain.dto.ResponseDto;
 import com.forumseila.forumseila.domain.dto.ResponsePageable;
 import com.forumseila.forumseila.repositories.QuestionRepository;
 import com.forumseila.forumseila.repositories.ResponseRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class ResponseService {
@@ -49,12 +44,10 @@ public class ResponseService {
         return Optional.ofNullable(response);
     }
 
-    public Page<ResponsePageable> findAllResponse(String externalId) {
-        Optional<Question> question = questionRepository.findByExternalId(UUID.fromString(externalId));
-        if (question.isEmpty()) {
-            return Page.empty();
-        }
-        return new PageImpl<> (question.get().getResponses().stream().map(s ->
-                new ResponsePageable(s.getNameOwner(), s.getResponse())).collect(Collectors.toList()));
+    public Page<ResponsePageable> findAllResponse(String externalId, Pageable pageable) {
+        Page<ResponsePageable> responses =
+                responseRepository.findResponseByQuestionExternalId(UUID.fromString(externalId), pageable)
+                        .map(s -> new ResponsePageable(s.getNameOwner(), s.getResponse()));
+        return responses;
     }
 }

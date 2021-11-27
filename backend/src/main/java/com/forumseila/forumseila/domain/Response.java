@@ -1,7 +1,9 @@
 package com.forumseila.forumseila.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Entity
@@ -17,6 +19,7 @@ public class Response {
     private Question question;
 
     @NotBlank
+    @Size(min = 10, max = 500)
     private String response;
 
     @NotBlank
@@ -26,7 +29,6 @@ public class Response {
     public void prePersist(){
         externalId = UUID.randomUUID();
     }
-
 
     public String getResponse() {
         return response;

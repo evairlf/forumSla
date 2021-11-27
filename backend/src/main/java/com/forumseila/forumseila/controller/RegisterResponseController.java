@@ -5,6 +5,7 @@ import com.forumseila.forumseila.domain.dto.ResponseDto;
 import com.forumseila.forumseila.domain.dto.ResponsePageable;
 import com.forumseila.forumseila.service.ResponseService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,9 @@ public class RegisterResponseController {
     }
 
     @GetMapping("/{externalId}")
-    public ResponseEntity<Page<ResponsePageable>> findAllResponse(@PathVariable String externalId) {
+    public ResponseEntity<Page<ResponsePageable>> findAllResponse(@PathVariable String externalId, Pageable pageable) {
         Page<ResponsePageable> responsePageables =
-                responseService.findAllResponse(externalId);
+                responseService.findAllResponse(externalId, pageable);
         if (responsePageables.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

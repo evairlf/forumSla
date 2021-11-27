@@ -3,6 +3,7 @@ package com.forumseila.forumseila.controller;
 import com.forumseila.forumseila.domain.Question;
 import com.forumseila.forumseila.domain.dto.QuestionDto;
 import com.forumseila.forumseila.domain.dto.QuestionDtoReponse;
+import com.forumseila.forumseila.domain.dto.QuestionDtoResponsePageable;
 import com.forumseila.forumseila.service.QuestionService;
 import org.springframework.data.domain.Page;
 
@@ -22,7 +23,6 @@ public class RegisterQuestionController {
         this.questionService = questionService;
     }
     
-    @CrossOrigin(origins = "*")
     @PostMapping("/register")
     public ResponseEntity<?> registerQuestion(@Valid @RequestBody QuestionDto questionDto) {
         Optional<Question> question =
@@ -41,5 +41,14 @@ public class RegisterQuestionController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(questionDtoReponses);
+    }
+
+    @GetMapping("/find/{externalId}")
+    public ResponseEntity<QuestionDtoResponsePageable> findQuestion(@Valid @PathVariable String externalId){
+        var questionResponse = questionService.findQuestionByExternalId(externalId);
+        if(questionResponse.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(questionResponse.get());
     }
 }
