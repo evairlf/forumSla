@@ -30,19 +30,10 @@ const Questions = () => {
                 {
                     externalIdOwner: getAuthData().externalId,
                     question: mkquest.question
-
-
-                },
-                {
-                    headers: {
-
-                    }
                 }
             )
             .then((response) => {
-                console.log(mkquest.question);
-                console.log(external_id_mocked);
-
+                window.location.href = "/";
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
@@ -64,10 +55,10 @@ const Questions = () => {
 
                             <div className="couve">
                                 <span className="input-group-text ">Digite sua pergunta aqui</span>
-                                <textarea className="form-control input-group " maxLength={250}
+                                <textarea className="form-control input-group " minLength={10} maxLength={500}
                                     aria-label="With textarea" {...register('question')} name="question" ></textarea>
                                 <div className="merda d-flex justify-content-center">
-                                    <button className="btn" type="submit" >Enviar!</button>
+                                    <button className="btn" type="submit">Enviar!</button>
                                     <NavLink className="btn " to=""  >Voltar!</NavLink>
                                 </div>
 

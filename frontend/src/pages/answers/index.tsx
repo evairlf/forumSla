@@ -28,16 +28,10 @@ const Answers = () => {
                     externalIdQuestion: localStorage.getItem('externalQuestionid'),
                     response: mkquest.response,
                     nameOwner: localStorage.getItem('nameOwner')
-                },
-                {
-                    headers: {
-
-                    }
-                }
+                } 
             )
             .then((response) => {
-                console.log(mkquest.nameOwner);
-                console.log(mkquest.externalIdQuestion);
+                window.location.href = "/";
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
@@ -57,10 +51,10 @@ const Answers = () => {
 
                                 <div className="couve">
                                     <span className="input-group-text ">Responda a pergunta aqui</span>
-                                    <textarea className="form-control input-group  " maxLength={1250} aria-label="With textarea" {...register('response')} name="response" ></textarea>
+                                    <textarea className="form-control input-group  " minLength={10} maxLength={500} aria-label="With textarea" {...register('response')} name="response" ></textarea>
                                     <div className="merda d-flex justify-content-center">
-                                        <NavLink className="btn" type="submit" to="/" >Enviar!</NavLink>
-                                        <NavLink className="btn " to=""  >Voltar!</NavLink>
+                                        <button className="btn" type="submit" >Enviar!</button>
+                                        <NavLink className="btn " to="">Voltar!</NavLink>
                                     </div>
                                 </div>
 
