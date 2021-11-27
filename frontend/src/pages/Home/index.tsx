@@ -11,7 +11,7 @@ import './styles.css'
 
 const Home = () => {
 
- 
+
 
 
   //const User = [{
@@ -33,15 +33,15 @@ const Home = () => {
   //}];
 
 
- 
+
 
   return (
     <>
       <div className="d-flex column ">
-        <div className="sidebar-fica-certo">
+        <div>
           <Sidebar />
         </div>
-        <Ask/>
+        <Ask />
       </div >
       <Footer />
     </>

@@ -2,8 +2,10 @@ import Footer from "components/Footer";
 import Sidebar from "components/sidebar"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 import api from "services/api";
-import { makeQuestion } from "types/user";
+import { getAuthData } from "services/util/requests";
+
 import './styles.css';
 
 const external_id_mocked = 'aa8d7baa-3c03-43f6-8d4b-b0869250fa8f';
@@ -23,27 +25,24 @@ const Questions = () => {
 
 
     const onSubmit = (mkquest: mkQuest) => {
-        console.log(mkquest.question);
-        console.log(external_id_mocked);
-
         api
-            .post('/api/v1/question/register',  
-            {
-                externalIdOwner: external_id_mocked,
-                question: "Antes eu odiava front end quando fiz esse trabalho eu odeio mais ainda tenho trauma?"
-                
-                
-            },
-            {
-                headers: {
-                  
+            .post('/api/v1/question/register',
+                {
+                    externalIdOwner: getAuthData().externalId,
+                    question: mkquest.question
+
+
+                },
+                {
+                    headers: {
+
+                    }
                 }
-              }
             )
             .then((response) => {
                 console.log(mkquest.question);
                 console.log(external_id_mocked);
-                
+
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
@@ -56,16 +55,21 @@ const Questions = () => {
             <div className="sidebar-teimoso">
                 <Sidebar />
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
 
+
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="questions-conteiner d-flex flex-column justify-content-center">
                     <div className="d-flex flex-column justify-content-center">
                         <div className="input-group-sm float-right">
 
                             <div className="couve">
                                 <span className="input-group-text ">Digite sua pergunta aqui</span>
-                                <textarea className="form-control input-group " maxLength={1250} aria-label="With textarea" {...register('question')} name="question" ></textarea>
-                                <div className="merda justify-content-center"><button className="btn" type="submit" >Enviar!</button></div>
+                                <textarea className="form-control input-group " maxLength={250}
+                                    aria-label="With textarea" {...register('question')} name="question" ></textarea>
+                                <div className="merda d-flex justify-content-center">
+                                    <button className="btn" type="submit" >Enviar!</button>
+                                    <NavLink className="btn " to=""  >Voltar!</NavLink>
+                                </div>
 
                             </div>
 
@@ -73,14 +77,10 @@ const Questions = () => {
                     </div>
                 </div>
             </form>
-            </div>
+        </div>
             <Footer />
         </>
     );
 }
 
 export default Questions;
-
-function cors(): any {
-    throw new Error("Function not implemented.");
-}

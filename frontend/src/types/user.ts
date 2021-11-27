@@ -19,3 +19,5 @@ export type makeQuestion = {
     question: string,
     externalIdOwner: string
 }
+
+export const taLogado = () => true;

@@ -15,8 +15,13 @@ type loginResponse = {
     externalId: string
 }
 
+export type UUID = {
+    idQuestion: string;
+}
+
 const nome = 'nameOwner';
 const id_externo = 'externalIdUser'
+const id_question = 'idQuestion'
 
 export const requestBackendLogin = (loginData: LoginData) => {
 
@@ -44,4 +49,12 @@ export const getAuthData = () => {
         externalId: localStorage.getItem(id_externo) ?? ""
     }
     return userCredentials;
+}
+
+export const saveIdQuestion = (obj: string) => {
+    localStorage.setItem(id_question, obj);
+}
+
+export const getIdQuestion = () => {
+    return id_question ?? '{}';
 }

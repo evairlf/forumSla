@@ -2,7 +2,7 @@ import logoImage from 'assets/images/Logotipo.png'
 import { Console } from 'console';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Redirect } from 'react-router';
+import { Redirect, Route } from 'react-router';
 import api from 'services/api';
 import { getAuthData, saveAuthData } from 'services/util/requests';
 import './styles.css'
@@ -11,10 +11,6 @@ type FormLogin = {
     email: string;
     password: string;
 }
-
-
-
-
 
 const Login = () => {
     const [hasError, sethasError] = useState(false);
@@ -33,6 +29,7 @@ const Login = () => {
                 password: formLogin.password
             })
             .then((response) => {
+                localStorage.clear();
                 saveAuthData(response.data);
                 const valor = getAuthData();
                 console.log('VALOR DO LOCAL STORAGE: ' + valor.name + '  --  ' + valor.externalId);
@@ -50,7 +47,6 @@ const Login = () => {
         console.log(user.name);
         console.log(user.externalId);
     }
-
 
     return (
         <div className="d-flex justify-content-center mx-2 align-items-xl-center">
@@ -79,8 +75,6 @@ const Login = () => {
                     <div className="invalid-feedback d-block">{errors.email?.message}</div>
                 </div>
 
-
-
                 <div className="form-group">
                     <label>Senha</label>
                     <input type="password"
@@ -94,12 +88,12 @@ const Login = () => {
                     <div className="invalid-feedback  d-block">{errors.password?.message}</div>
                 </div>
 
-
                 <div className="d-flex justify-content-center">
-                    <button type="submit" className="btn btn-block ">Entrar!</button>
+                    <button type="submit" className="btn btn-block " role='button'>Entrar!</button>
+                    { localStorage.getItem('externalIdUser') ? <Redirect push to="/"/> : ''}
                 </div>
                 <p className="forgot-password text-right d-flex justify-content-start py-4 mx-2">
-                    Não tem conta? <a className="mx-2" onClick={imprime}> Cadastrar Conta</a>
+                    Não tem conta? <a className="mx-2" href={ localStorage.getItem('externalIdUser') ? '/' : '/login'}> Cadastrar Conta</a>
                 </p>
             </form>
         </div>

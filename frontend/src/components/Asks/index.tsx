@@ -1,59 +1,94 @@
-import { useEffect, useState } from "react";
-import api from "services/api";
-import { questions } from "types/questions";
+import QuestionCard from 'components/questionsCard';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import api from 'services/api';
+import { saveIdQuestion } from 'services/util/requests';
+import { questions } from 'types/questions';
+
 import './styles.css';
 
 type userQuestions = {
-  content : questions[];
+  first: boolean,
+  last: boolean,
+  content: questions[];
+
 }
+
+type idQuestion = {
+  couve : any;
+};
+
+
 
 const Ask = () => {
 
-  const [userQuestions, setuserQuestions] = useState<userQuestions>({ content: [] });
+  const [userQuestions, setuserQuestions] = useState<userQuestions>({ first: true,last: false,content: [] });
+
+  const { register, handleSubmit } = useForm();
+
+  const page = 0;
+
+  const [activePage, setActivePage] = useState(0);
 
   useEffect(() => {
     api
-      .get("/api/v1/question")
+      .get(`/api/v1/question?page=${activePage}&sort=date,desc`)
       .then((response) => {
         setuserQuestions(response.data);
-        console.log(userQuestions);
+        console.log(userQuestions.last);
+        localStorage.removeItem('externalQuestionid');
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-  }, []);
+  }, [activePage]);
+
+
+  const onSubmit = (obj : idQuestion) => {
+     
+    console.log(obj.couve);
+    localStorage.removeItem('idQuestion');
+    saveIdQuestion(obj.couve);
+    console.log(obj.couve)
+    
+  };
+  
+  const onPageChange = (valor : number) =>{
+    setActivePage(valor);
+  }
 
   return (
-    <div className="row mb-1 perguntas ">
-      <nav aria-label="Page navigation example ">
-        <ul className="pagination d-flex justify-content-center xingorinfola">
-          <li className="page-item"><a className="page-link" href="#">Anterior</a></li>
-          <li className="page-item"><a className="page-link" href="#">1</a></li>
-          <li className="page-item"><a className="page-link" href="#">2</a></li>
-          <li className="page-item"><a className="page-link" href="#">3</a></li>
-          <li className="page-item"><a className="page-link" href="#">Proxima</a></li>
-        </ul>
-      </nav>
-
-      <tbody>
-        {userQuestions.content?.map(x => (
-          <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div className="col p-4 d-flex flex-column position-static">
-              <h3 className="mb-0">{x.nameOwner}</h3>
-              <p className="mb-1 text-muted width:720px">{<h6>{x.question}</h6>}</p>
-              <a href="" className="stretched-link">Responda!</a>
-            </div>
-          </div>
-        ))}
-      </tbody>
-
-      <div className="col-md-25">
-
-        <div className="col-auto d-none d-lg-block">
+    
+    <form className="perguntas" onSubmit={handleSubmit(onSubmit)}>
+      
+      <div className="row ">
+            <nav>
+                <ul className="pagination d-flex justify-content-center">
+                    <li className={`page-item ${userQuestions.first ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={() => onPageChange(activePage-1)}>Anterior</button>
+                    </li>
+                    <li className="page-item disabled">
+                        <span className="page-link">{activePage + 1}</span>
+                    </li>
+                    <li className={`page-item ${userQuestions.last ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={() => onPageChange(activePage+1)}>Próxima</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
-      </div>
 
-    </div >
+        <tbody>
+          {userQuestions.content?.map(x => (
+            <QuestionCard questions={x} />
+          ))}
+        </tbody>
+
+        <div className="col-md-25">
+
+          <div className="col-auto d-none d-lg-block">
+          </div>
+        </div>  
+    </form>
   );
 }
 
