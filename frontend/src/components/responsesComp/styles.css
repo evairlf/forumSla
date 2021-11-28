@@ -1,0 +1,15 @@
+.perguntas{
+    width: 998px;
+}
+
+.respostas {
+    background-color: darkcyan;
+    color: aliceblue;
+    border-radius: 2px;
+    box-shadow: 2px;
+    height: 200px;
+}
+
+.respostas h5 {
+    color: aliceblue;
+}

@@ -20,4 +20,10 @@ export type makeQuestion = {
     externalIdOwner: string
 }
 
+export type queBosta = {
+    question: string,
+    nameOwner: string
+}
+
 export const taLogado = () => true;
+

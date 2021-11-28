@@ -3,6 +3,7 @@ import Answers from "pages/answers";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Questions from "pages/Questions";
+import Responses from "pages/Responses";
 import SignUp from "pages/SignUp";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -25,6 +26,9 @@ const Routes = () => {
                 </Route>
                 <Route path="/questions" exact>
                     <Questions/>
+                </Route>
+                <Route path="/responses" exact>
+                    <Responses/>
                 </Route>
                 <Route path="">
                     <NotFound/>

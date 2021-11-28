@@ -3,3 +3,8 @@ export type questions = {
    nameOwner: string;
    externalIdQuestion: string;
 }
+
+export type response = {
+   nameOwner: string,
+   response: string
+}

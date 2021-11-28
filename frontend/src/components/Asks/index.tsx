@@ -43,14 +43,8 @@ const Ask = () => {
       });
   }, [activePage]);
 
-
   const onSubmit = (obj : idQuestion) => {
-     
-    console.log(obj.couve);
-    localStorage.removeItem('idQuestion');
     saveIdQuestion(obj.couve);
-    console.log(obj.couve)
-    
   };
   
   const onPageChange = (valor : number) =>{
