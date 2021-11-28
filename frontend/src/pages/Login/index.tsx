@@ -93,7 +93,7 @@ const Login = () => {
                     { localStorage.getItem('externalIdUser') ? <Redirect push to="/"/> : ''}
                 </div>
                 <p className="forgot-password text-right d-flex justify-content-start py-4 mx-2">
-                    Não tem conta? <a className="mx-2" href={ localStorage.getItem('externalIdUser') ? '/' : '/login'}> Cadastrar Conta</a>
+                    Não tem conta? <a className="mx-2" onClick={() => window.location.href = "signup"}> Cadastrar Conta</a>
                 </p>
             </form>
         </div>

@@ -18,7 +18,7 @@ const Routes = () => {
                 <Route path="/login">
                     <Login />
                 </Route>
-                <Route path="/signin" exact>
+                <Route path="/signup" exact>
                     <SignUp/>
                 </Route>
                 <Route path="/answers" exact>

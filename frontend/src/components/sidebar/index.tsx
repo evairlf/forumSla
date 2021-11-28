@@ -43,7 +43,7 @@ function Sidebar() {
         <p> </p>
         <NavLink type="submit" className="btn btn-block py-10" role='button' to="/"  onClick={logout}>Logout</NavLink></>) :
          (<><NavLink type="submit" className="btn btn-block pd-10" role='button' to="/login">Sign In</NavLink><p className="text-danger">
-           <strong>Para fazer perguntas você precisa estar logado</strong></p></>)}
+           <strong>Para fazer perguntas ou responder você precisa estar logado</strong></p></>)}
       </div>
     </div>
 
