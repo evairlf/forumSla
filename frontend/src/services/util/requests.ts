@@ -34,13 +34,16 @@ export const requestBackendLogin = (loginData: LoginData) => {
         password: 'vrau'
     }
 
-
-
 }
 
 export const saveAuthData = (obj: loginResponse) => {
     localStorage.setItem(nome, obj.nameOwner);
     localStorage.setItem(id_externo, obj.externalId);
+}
+
+export const saveUser = (nameOwner : string , externalId: string) => {
+    localStorage.setItem(nome, nameOwner);
+    localStorage.setItem(id_externo, externalId);
 }
 
 export const getAuthData = () => {
