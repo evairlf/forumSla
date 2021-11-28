@@ -30,26 +30,29 @@ public class RegisterOwnerController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerQuestion(@Valid @RequestBody OwnerDto ownerDto) {
+    public ResponseEntity<OwnerResponse> registerQuestion(@Valid @RequestBody OwnerDto ownerDto) {
         Optional<Owner> owner = ownerService.toOwner(ownerDto);
-        if(owner.isEmpty()){
+        if (owner.isEmpty()) {
             log.error("Owner not found {} ", ownerDto.getEmail());
         }
+        var ownerResponse =
+                owner.map(s -> new OwnerResponse(s.getName(), s.getExternalId())).get();
+
         Email email = new Email();
         emailService.sendEmail(email, owner.get());
         log.info("Email send with success and owner saved in DB {} ", ownerDto.getEmail());
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(ownerResponse);
     }
-    
+
     @PostMapping("/login")
     public ResponseEntity<OwnerResponse> verifyLogin(@Valid @RequestBody OwnerDtoLogin ownerDtoLogin) {
         Optional<OwnerResponse> response = ownerService.isValid(ownerDtoLogin)
-                .map(s -> new OwnerResponse(s.getName(),s.getExternalId()));
-        if(response.isEmpty()){
+                .map(s -> new OwnerResponse(s.getName(), s.getExternalId()));
+        if (response.isEmpty()) {
             log.error("Onwer not found {} ", ownerDtoLogin.getEmail());
-            return  ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
-        log.info("Onwer is logged with success {} ",ownerDtoLogin.getEmail());
+        log.info("Onwer is logged with success {} ", ownerDtoLogin.getEmail());
         return ResponseEntity.ok().body(response.get());
     }
 }
