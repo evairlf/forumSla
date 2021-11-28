@@ -35,7 +35,7 @@ function Sidebar() {
   return (
 
     <div className=" img-property flex-column">
-      <img className="img-property" src={logo}></img>
+      <img className="img-property" src={logo} onClick={() => {window.location.href = "/"}}></img>
       <div className="d-flex px-5 justify-content-center flex-column">
         {isLogged ? (<>
         <h4 className="d-flex justify-content-center">Olá,<strong>{localStorage.getItem('nameOwner')}</strong></h4>

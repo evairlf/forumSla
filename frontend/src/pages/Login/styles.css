@@ -9,3 +9,8 @@
     background-color: #29acb6;
     color: rgb(250, 250, 250);
 }
+
+.cadastro:hover{
+    cursor: pointer;
+    color: #29acb6;
+}

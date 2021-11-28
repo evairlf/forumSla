@@ -1,6 +1,6 @@
 import Footer from "components/Footer";
 import Sidebar from "components/sidebar"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import api from "services/api";
@@ -18,10 +18,16 @@ const Answers = () => {
     const [nome, setnome] = useState();
 
     const { register, handleSubmit } = useForm<responseQuest>();
-
-
+    useEffect(() => {
+        if ((localStorage.getItem('externalIdUser'))) {
+            return;
+        } else {
+            window.location.href = "/";
+        }
+    }, []);
 
     const onSubmit = (mkquest: responseQuest) => {
+        
         api
             .post('/api/v1/response/register',
                 {

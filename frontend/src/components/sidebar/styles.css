@@ -2,6 +2,10 @@
     width: 300px;
 }
 
+.img-property:hover {
+    cursor: pointer;
+}
+
 
 .img-property .btn{
     background-color: #195B60;

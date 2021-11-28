@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import api from 'services/api';
 import React, { useRef } from "react";
-import { getAuthData, saveAuthData } from 'services/util/requests';
+import { getAuthData, saveAuthData, saveUser } from 'services/util/requests';
 import './styles.css';
 
 type FormLogin = {
@@ -45,6 +45,7 @@ const SignUp = () => {
             })
             .then((response) => {
                 localStorage.clear();
+                saveUser(response.data)
                 const valor = getAuthData();
                 setUser(getAuthData());
                 setUser(response.data);
@@ -54,7 +55,7 @@ const SignUp = () => {
             })
             .catch((err) => {
                 sethasError(true);
-                alert("ops! ocorreu um erro" + err);
+                alert("Cadastro não efetuado, email já existente!");
             });
     };
 

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { getAuthData } from 'services/util/requests';
 import { questions, response } from 'types/questions';
 import './styles.css';
 

@@ -41,9 +41,9 @@ export const saveAuthData = (obj: loginResponse) => {
     localStorage.setItem(id_externo, obj.externalId);
 }
 
-export const saveUser = (nameOwner : string , externalId: string) => {
-    localStorage.setItem(nome, nameOwner);
-    localStorage.setItem(id_externo, externalId);
+export const saveUser = (obj: loginResponse) => {
+    localStorage.setItem(nome, obj.nameOwner);
+    localStorage.setItem(id_externo, obj.externalId);
 }
 
 export const getAuthData = () => {

@@ -92,8 +92,8 @@ const Login = () => {
                     <button type="submit" className="btn btn-block " role='button'>Entrar!</button>
                     { localStorage.getItem('externalIdUser') ? <Redirect push to="/"/> : ''}
                 </div>
-                <p className="forgot-password text-right d-flex justify-content-start py-4 mx-2">
-                    Não tem conta? <a className="mx-2" onClick={() => window.location.href = "signup"}> Cadastrar Conta</a>
+                <p className="forgot-password text-right d-flex justify-content-start py-4 mx-2 ">
+                    Não tem conta? <a className="mx-2 cadastro" onClick={() => window.location.href = "signup"}> Cadastrar Conta</a>
                 </p>
             </form>
         </div>

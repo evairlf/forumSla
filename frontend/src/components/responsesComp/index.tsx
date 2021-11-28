@@ -2,7 +2,7 @@ import ResponsesCard from 'components/ResponsesCard';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import api from 'services/api';
-import { saveIdQuestion } from 'services/util/requests';
+import { getAuthData, saveIdQuestion } from 'services/util/requests';
 import { questions, response } from 'types/questions';
 import { queBosta } from 'types/user';
 
@@ -38,6 +38,14 @@ const ResponsesList = () => {
     const page = 0;
 
     const [activePage, setActivePage] = useState(0);
+    
+    useEffect(() => {
+        if ((localStorage.getItem('externalIdUser'))) {
+            return;
+        } else {
+            window.location.href = "/";
+        }
+    }, []);
 
     useEffect(() => {
         api
